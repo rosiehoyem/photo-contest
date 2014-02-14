@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @contest.name %>
+</p>
+
+<p>
+  <strong>Active round:</strong>
+  <%= @contest.active_round %>
+</p>
+
+<p>
+  <strong>Posted:</strong>
+  <%= @contest.posted %>
+</p>
+
+<%= link_to 'Edit', edit_contest_path(@contest) %> |
+<%= link_to 'Back', contests_path %>

@@ -5,24 +5,23 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: 2.0
 
 * System dependencies
 
 * Configuration
+To create a new contest, contact the API administrator for a unique key.
 
 * Database creation
+Utilizes Postgres. See documentation: 
 
-* Database initialization
+* Database initialization: 
 
-* How to run the test suite
+
+* Test Suite:
+To run on tests on a local copy of this repository, navigate to the root directory and enter `rspec` on the command line.
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Application is currently deployed on Heroku
