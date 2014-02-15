@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :contest do
-    name "MyString"
+    name { Faker::Name.name}
     active_round 1
     posted false
   end

@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :round do
     number 1
-    image_a "MyString"
-    image_b "MyString"
+    image_a "12345"
+    image_b "22345"
   end
 end

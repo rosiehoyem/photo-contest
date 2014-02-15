@@ -1,4 +1,4 @@
-<h1>Listing contests</h1>
+<h1>Photo Tournament!</h1>
 
 <table>
   <thead>
@@ -15,7 +15,7 @@
   <tbody>
     <% @contests.each do |contest| %>
       <tr>
-        <td><%= contest.name %></td>
+        <td><%= link_to contest.name, contest_path %></td>
         <td><%= contest.active_round %></td>
         <td><%= contest.posted %></td>
         <td><%= link_to 'Show', contest %></td>
