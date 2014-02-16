@@ -2,7 +2,12 @@ PhotoContest::Application.routes.draw do
 
   resources :contests do
     resources :rounds, :images do
-      resource :images
+      resource :images do
+        collection do
+          post 'wins'
+          get 'winner'
+        end
+      end 
     end
   end
 

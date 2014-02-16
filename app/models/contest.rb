@@ -54,6 +54,10 @@ class Contest < ActiveRecord::Base
     ["contest"]["rounds"].first["pairs"].count == 1
   end
 
+  def finalize_contest
+    HTTParty.post("http://pv.pop.umn.edu/contest/" + self.api_key + "/done")
+  end
+
   def contest_id
     self.id
   end

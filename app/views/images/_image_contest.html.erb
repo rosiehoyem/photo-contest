@@ -1,0 +1,14 @@
+    <tr>
+      <td><%= image[0] %></td>
+      <td><%= image[1] %></td>
+    </tr>
+    <tr>
+      <td><%= image[0] %>
+        <%= button_to [:wins, image[0]] do %>
+          <strong><%= image[0] %> Wins!</strong>
+        <% end %></td>
+      <td><%= image[1] %>
+        <%= button_to [:wins, image[1]] do %>
+          <strong><%= image[1] %> Wins!</strong>
+        <% end %></td>
+    </tr>

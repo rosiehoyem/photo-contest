@@ -12,7 +12,11 @@ class RoundsController < ApplicationController
   # GET /rounds/1.json
   def show
     @contest.round_setup(@round)
-    @pairs = @round.image_collection.each_slice(2).to_a
+    object_hash = []
+    @round.image_collection.each do |id|
+      object_hash << Image.find_by(flickr_id: id)
+    end
+    @pairs = object_hash.each_slice(2).to_a
   end
 
   # GET /rounds/new

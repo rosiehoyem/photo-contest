@@ -1,30 +1,52 @@
-<h2><%=@contest.name %>'s Photo Tournament</h2>
-
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Round Number:</strong>
-  <%= @round.number %>
-</p>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1 id="tables"><%=@contest.name.gsub(".", " ") %>'s Photo Tournament</h1>
+          <h2>Round <%= @round.number %></h2>
+      </div>
+      <div class="table-responsive">
+        <% i = 1 %>
+        <% @pairs.each do |image| %>
+          <div class="well">
+            <h2>Photo Face-Off #<%= i %></h2>
+            <% i = i +1 %>
+            <table class="table table-hover ">
+              <thead>
+              <tr>
+                <th><h2>Image A</h2></th>
+                <th><h2>Image B</h2></th>
+              </tr>
+            </thead>
+            <% if image[0].in_competition == true && image[1].in_competition == true %>
+              <div class="image_contest">
+                <tr>
+                  <td><strong><%= image[0].title %></strong></td>
+                  <td><strong><%= image[1].title %></strong></td>
+                </tr>
+                <tr>
+                  <td><%= image_tag image[0].url, width: "350" %></td>
+                  <td><%= image_tag image[1].url, width: "350" %></td>
+                </tr>
+                <tr>
+                  <td><%= button_to wins_contest_round_images_path(round_id: @round.id, id: image[0].id, loser_id: image[1].id), remote: true, class: "btn btn-primary" do %>
+                      <strong>Image B Wins!</strong>
+                    <% end %></td>
+                  <td><%= button_to wins_contest_round_images_path(round_id: @round.id, id: image[0].id, loser_id: image[1].id), remote: true, class: "btn btn-primary" do %>
+                      <strong>Image A Wins!</strong>
+                    <% end %></td>
+                </tr>
+              </div>
+            <% else %>
+              <%= render "images/wins" %>
+            <%end%>
+            </table>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<% @pairs.each do |image| %>
-<table>
-  <thead>
-    <tr>
-      <th>Image a</th>
-      <th>Image b</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-    <tr>
-      <td><%= image[0] %></td>
-      <td><%= image[1] %></td>
-      <td></td>
-      <td></td>
-  <tbody>
-
-</table>
-<% end %>
 
 <%= link_to 'Back', contest_path(@contest) %>
