@@ -8,11 +8,8 @@
 <p>
   <strong>Active round:</strong>
   <%= @contest.active_round %>
+  <strong><%=link_to "Vote on this round!", contest_round_path(contest_id: @contest.id, id: @contest.active_round) %></strong>
 </p>
-
-Photo Rounds:
-
-<%= render 'rounds/show' %>
 
 <p>
   <strong>Posted:</strong>

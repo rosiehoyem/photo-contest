@@ -28,8 +28,22 @@ class ContestsController < ApplicationController
 
     respond_to do |format|
       if @contest.save
-        format.html { redirect_to @contest, notice: 'Contest was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @contest }
+        @contest.initialize_contest
+        if 
+          @contest.save_project_details
+          @round = @contest.rounds.create(number: 1)
+          @contest.active_round = @round.number
+          if @contest.save        
+            format.html { redirect_to contest_round_path(contest_id: @contest.id, id: @round.number), notice: 'Contest was successfully created.' }
+            format.json { render action: 'show', status: :created, location: @contest }
+          else
+            format.html { render action: 'new', notice: 'Sorry, your new contest was not saved.'}
+            ormat.json { render action: 'show', status: :created, location: @contest }
+          end
+        else
+          format.html { render action: 'new', notice: 'Your contest was not initiated successfully'}
+          ormat.json { render action: 'show', status: :created, location: @contest }
+        end  
       else
         format.html { render action: 'new' }
         format.json { render json: @contest.errors, status: :unprocessable_entity }
@@ -69,6 +83,6 @@ class ContestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contest_params
-      params.require(:contest).permit(:name, :active_round, :posted)
+      params.require(:contest).permit(:name, :active_round, :posted, :api_key)
     end
 end

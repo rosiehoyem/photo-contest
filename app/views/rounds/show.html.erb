@@ -1,7 +1,9 @@
+<h2><%=@contest.name %>'s Photo Tournament</h2>
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
+  <strong>Round Number:</strong>
   <%= @round.number %>
 </p>
 
@@ -15,5 +17,20 @@
   <%= @round.image_b %>
 </p>
 
-<%= link_to 'Edit', edit_round_path(@round) %> |
-<%= link_to 'Back', rounds_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Pair Number</th>
+      <th>Image a</th>
+      <th>Image b</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+</table>
+
+<%= link_to 'Back', contest_path(@contest) %>

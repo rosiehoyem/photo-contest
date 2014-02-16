@@ -11,17 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="api-key">
+    <%= f.label :api_key %><br>
+    <%= f.text_field :api_key %>
   </div>
-  <div class="field">
-    <%= f.label :active_round %><br>
-    <%= f.number_field :active_round %>
+    <%= f.hidden_field :active_round, value: 1 %>
   </div>
-  <div class="field">
-    <%= f.label :posted %><br>
-    <%= f.check_box :posted %>
   </div>
   <div class="actions">
     <%= f.submit %>

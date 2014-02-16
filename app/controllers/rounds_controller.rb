@@ -1,4 +1,5 @@
 class RoundsController < ApplicationController
+  before_action :set_contest
   before_action :set_round, only: [:show, :edit, :update, :destroy]
 
   # GET /rounds
@@ -10,6 +11,7 @@ class RoundsController < ApplicationController
   # GET /rounds/1
   # GET /rounds/1.json
   def show
+    # @pairs = @contest.image_pair
   end
 
   # GET /rounds/new
@@ -65,6 +67,10 @@ class RoundsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_round
       @round = Round.find(params[:id])
+    end
+
+    def set_contest
+      @contest = Contest.find(params[:contest_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
