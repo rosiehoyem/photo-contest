@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140215171310) do
+ActiveRecord::Schema.define(version: 20140216020735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,11 +41,11 @@ ActiveRecord::Schema.define(version: 20140215171310) do
 
   create_table "rounds", force: true do |t|
     t.integer  "number"
-    t.string   "image_a"
-    t.string   "image_b"
     t.integer  "contest_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_collection",  array: true
+    t.string   "winner_collection", array: true
   end
 
   add_index "rounds", ["contest_id"], name: "index_rounds_on_contest_id", using: :btree

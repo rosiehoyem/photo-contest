@@ -17,20 +17,24 @@
   <%= @round.image_b %>
 </p>
 
+<% @pairs.each do |image| %>
 <table>
   <thead>
     <tr>
-      <th>Pair Number</th>
       <th>Image a</th>
       <th>Image b</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
-
+    <tr>
+      <td><%= image[0] %></td>
+      <td><%= image[1] %></td>
+      <td></td>
+      <td></td>
   <tbody>
 
 </table>
+<% end %>
 
 <%= link_to 'Back', contest_path(@contest) %>

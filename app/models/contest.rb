@@ -37,9 +37,13 @@ class Contest < ActiveRecord::Base
     end
   end
 
-  def image_pair(status)
-    parsed_images.each_slice(2) {|a| p a }
-  end
+  def round_setup
+    round = self.rounds.build(image_collection: [], round: 1)
+    self.save
+    self.images.all.each do |image|
+      round.image_collection << image.id
+    end
+  end 
 
   def update_status(parsed_status)
     self.active_round = parsed_status["contest"]["active_round"]

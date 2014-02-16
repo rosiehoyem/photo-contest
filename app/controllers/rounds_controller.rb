@@ -11,7 +11,7 @@ class RoundsController < ApplicationController
   # GET /rounds/1
   # GET /rounds/1.json
   def show
-    # @pairs = @contest.image_pair
+    @pairs = @round.image_collection.each_slice(2) {|a| p a }
   end
 
   # GET /rounds/new
