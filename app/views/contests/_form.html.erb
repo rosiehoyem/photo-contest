@@ -1,4 +1,5 @@
-<%= form_for(@contest) do |f| %>
+
+<%= form_for @contest, html: {class: "form-horizontal"} do |f| %>
   <% if @contest.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
@@ -11,14 +12,12 @@
     </div>
   <% end %>
 
-  <div class="api-key">
-    <%= f.label :api_key %><br>
-    <%= f.text_field :api_key %>
+  <div class="form-group api-key">
+    <%= f.label :api_key, class: "control-label" %><br>
+    <%= f.text_field :api_key, class: "form-control", placeholder: "Enter your API Key" %>
   </div>
     <%= f.hidden_field :active_round, value: 1 %>
-  </div>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions pull-right">
+    <%= f.submit "Let the Tournament Begin!", class: "btn btn-primary" %>
   </div>
 <% end %>

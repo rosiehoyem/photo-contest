@@ -16,42 +16,38 @@ class Contest < ActiveRecord::Base
   end
 
   def save_project_details(status)
-    parsed_status = JSON.parse(contest.status)
+    parsed_status = JSON.parse(status)
     self.name = parsed_status["contest"]["name"]
     self.active_round = parsed_status["contest"]["active_round"]
   end
 
-  def get_call
+  def get_images
     HTTParty.get("http://pv.pop.umn.edu/contest/" + self.api_key + "/images")
   end
 
-  def create_from_hash(get_images)
-    parsed_images = JSON.parse(contest.get_images)
+  def images_from_hash(get_images)
+    parsed_images = JSON.parse(get_images)
     parsed_images.each do |hash|
       self.images.create(
       contest_id: self.id,
-      flicker_id: hash["image"]["flickr_id"],
+      flickr_id: hash["image"]["flickr_id"],
       owner: hash["image"]["owner"],
       title: hash["image"]["title"],
       url: hash["image"]["url"])
     end
   end
 
-  def round_setup
-    round = self.rounds.build(image_collection: [], round: 1)
-    self.save
-    self.images.all.each do |image|
-      round.image_collection << image.id
+  def round_setup(round)
+    flickr_ids = []
+    self.images.each do |image|
+      flickr_ids << image.flickr_id
     end
+    round.update_attributes(image_collection: flickr_ids)
   end 
 
   def update_status(parsed_status)
     self.active_round = parsed_status["contest"]["active_round"]
     self.posted = parsed_status["contest"]["posted"]
-  end
-
-  def self.build_round(parsed_status)
-
   end
 
   def final_round?(parsed_status)

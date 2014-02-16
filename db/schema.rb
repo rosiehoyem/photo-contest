@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20140216020735) do
     t.integer  "contest_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_collection",  array: true
-    t.string   "winner_collection", array: true
+    t.string   "image_collection",  default: [], array: true
+    t.string   "winner_collection", default: [], array: true
   end
 
   add_index "rounds", ["contest_id"], name: "index_rounds_on_contest_id", using: :btree

@@ -10,7 +10,7 @@ class Round < ActiveRecord::Base
     self.number
   end
 
-	def new_round
+	def new_round(round)
 
   end
 

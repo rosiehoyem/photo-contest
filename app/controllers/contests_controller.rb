@@ -29,20 +29,24 @@ class ContestsController < ApplicationController
     respond_to do |format|
       if @contest.save
         @contest.initialize_contest
-        if 
-          @contest.save_project_details
-          @round = @contest.rounds.create(number: 1)
+        if @contest.save_project_details(@contest.status)
+          @round = @contest.rounds.create(number: 1, image_collection: [])
           @contest.active_round = @round.number
-          if @contest.save        
-            format.html { redirect_to contest_round_path(contest_id: @contest.id, id: @round.number), notice: 'Contest was successfully created.' }
-            format.json { render action: 'show', status: :created, location: @contest }
+          if @contest.save
+            if @contest.images_from_hash(@contest.get_images)        
+              format.html { redirect_to contest_round_path(contest_id: @contest.id, id: @round.number), notice: 'Contest was successfully created.' }
+              format.json { render action: 'show', status: :created, location: @contest }
+            else
+              format.html { render action: 'new', notice: "Sorry, we could not retrieve your images."}
+              format.json { render action: 'show', status: :created, location: @contest } 
+            end
           else
             format.html { render action: 'new', notice: 'Sorry, your new contest was not saved.'}
-            ormat.json { render action: 'show', status: :created, location: @contest }
+            format.json { render action: 'show', status: :created, location: @contest }
           end
         else
           format.html { render action: 'new', notice: 'Your contest was not initiated successfully'}
-          ormat.json { render action: 'show', status: :created, location: @contest }
+          format.json { render action: 'show', status: :created, location: @contest }
         end  
       else
         format.html { render action: 'new' }
