@@ -6,9 +6,6 @@ class Contest < ActiveRecord::Base
 
   def initialize_contest
     HTTParty.post("http://pv.pop.umn.edu/contest/" + self.api_key + "/reset")
-    # if parsed_response["code"] == "200"
-    #   return "Success!"
-    # end
   end
 
   def status
