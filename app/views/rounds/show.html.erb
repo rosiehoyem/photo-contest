@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
   <div class="row">
     <div class="col-lg-12">
       <div class="page-header">
@@ -10,7 +9,7 @@
         <% i = 1 %>
         <% @pairs.each do |image| %>
           <div class="well">
-            <h2>Photo Face-Off #<%= i %></h2>
+            <h2>Photo Face Off #<%= i %></h2>
             <% i = i +1 %>
             <table class="table table-hover ">
               <thead>
@@ -31,25 +30,23 @@
                 </tr>
                 <tr>
                   <td>
-                    <div class="text-center">
                     <%= form_tag(wins_contest_round_images_path(round_id: @round.id, contest_id: @contest.id, id: image[0].id ), method: "post") do %>
                       <%= check_box_tag(image[0].in_competition) %>
                       <%= label_tag(:in_competition, "Image A Wins!") %>
                       <%= hidden_field_tag(:loser_id, image[1].id) %>
                     <p><%= submit_tag "Submit Winner", class: "btn btn-primary" %></p>
                     <%end%>
-                  </div>
                   </td>
                   <td>
-                    <%= form_tag(wins_contest_round_images_path(round_id: @round.id, contest_id: @contest.id, id: image[0].id ), method: "post") do %>
+                    <%= form_tag(wins_contest_round_images_path(round_id: @round.id, contest_id: @contest.id, id: image[1].id ), method: "post") do %>
                         <%= check_box_tag(image[1].in_competition) %>
-                        <%= label_tag(image[1].in_competition, "Image B Wins!") %>
-                      <%= submit_tag "Submit Winner", class: "btn btn-primary" %>
+                        <%= label_tag(:in_competition, "Image B Wins!") %>
+                        <%= hidden_field_tag(:loser_id, image[0].id) %>
+                      <p><%= submit_tag "Submit Winner", class: "btn btn-primary" %></p>
                     <%end%>
                   </td>
                 </tr>
                 <tr>
-                  
                 </tr>
               </div>
             <% else %>
