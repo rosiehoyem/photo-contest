@@ -22,6 +22,8 @@
 
 * Set-up: To create a new contest, contact the API administrator for a unique api-key. This is the only required parameter for initializing a new tournament. I've treated the API key as non-sensative data. If it were identified as a security concern, I would put it in a `.yml` file, hide it from GitHub in the `.gitignore` file, and reference it through the configs. I'd use Heroku's config variables to include it in production.
 
+* Front end: [Bootstrap](http://getbootstrap.com/) and [Bootswatch](http://bootswatch.com/) theme were used to styalize the front end and provide some light interactivity.
+
 ##Issues to resolve:
 
 1. The application breaks (ungracefully) when trying to submit the first round of winners. I ran into an issue with submitting the form for choosing a winner in Round 1.
