@@ -1,6 +1,6 @@
 class RoundsController < ApplicationController
   before_action :set_contest
-  before_action :set_round, only: [:show, :edit, :update, :destroy]
+  before_action :set_round, only: [:show]
 
   def index
     @rounds = Round.all

@@ -1,5 +1,5 @@
 class ContestsController < ApplicationController
-  before_action :set_contest, only: [:show, :edit, :update, :destroy]
+  before_action :set_contest, only: [:show, :final, :finalize]
 
   # GET /contests
   # GET /contests.json
@@ -45,6 +45,15 @@ class ContestsController < ApplicationController
         format.json { render json: @contest.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def final
+    @image = Image.find_by(flickr_id: winner_id)
+  end
+
+  def finalize
+    @contest.finalize_contest
+    redirect_to root_path, notice: 'Your tournament was successfully finalized. Thanks for playing.'
   end
 
 

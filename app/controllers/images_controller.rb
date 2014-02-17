@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:wins, :show, :edit, :update, :destroy]
+  before_action :set_image, only: [:wins, :show]
 
   def index
     @images = Image.all

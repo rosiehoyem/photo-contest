@@ -15,7 +15,7 @@ describe Contest do
  
   end
 
-  # describe "GET system profile" do
+  # describe "GET contest status" do
 
   # 	let(:contest) { FactoryGirl.build(:contest) }
  

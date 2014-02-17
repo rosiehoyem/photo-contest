@@ -1,6 +1,10 @@
 PhotoContest::Application.routes.draw do
 
   resources :contests do
+    collection do
+      get 'final'
+      post 'finalize'
+    end
     resources :rounds, :images do
       resource :images do
         collection do

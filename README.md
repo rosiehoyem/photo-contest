@@ -1,24 +1,26 @@
 #README
 
-##Overview: This is a tournament-style application for choosing a winning photograph out of a pool of 16 photographs. Users inialize a tournament with a unique API key and move through 4 rounds of choosing winners from pairs of photos to arrive at 1 grand champion photo.
+##Overview: 
+
+* This is a tournament-style application for choosing a winning photograph out of a pool of 16 photographs. Users inialize a tournament with a unique API key and move through four rounds of choosing winners from pairs of photos to arrive at one grand champion photo.
 
 #Application Details: 
 
-* Ruby version: 2.0.0, Rails version 4.0.2
-
-* Configuration: To create a new contest, contact the API administrator for a unique api-key. This is the only required parameter for initializing a new tournament. I've treated the API key as non-sensative data. If it were identified as a security concern, I would put it in a `.yml` file, hide it from GitHub in the `.gitignore` file, and reference through the configs. I'd use Heroku's config variables to include it in production.
+* Ruby version: 2.0.0, Rails version 4.0.2, see the Gemfile for a full list of dependencies
 
 * Database: This app utilizes Postgres in the development, testing, and production environments. 
 
 * Architecture: The application design follows object-oriented methodologies with three models.
 
-* Web Service: The application utilizes a web service located at: [http://pv.pop.umn.edu/](http://pv.pop.umn.edu/). The webservice to utilized at several moments throughout the tourament: 1. Contest initialization, 2. Retrieving the data for each round, 3. Reporting the results of each round’s voting, and 4. Contest completion.
+* Web Service: The application is built around a web service located at: [http://pv.pop.umn.edu/](http://pv.pop.umn.edu/). The webservice to utilized at several moments throughout the tourament: 1. Contest initialization, 2. Retrieving the data for each round, 3. Reporting the results of each round’s voting, and 4. Contest completion.
 
 * Testing Tools: I've started to create a test suite utilizing Rsec, Capybara, and Selenium. I've also included the gems for database_cleaner, factory_girl, guard, webmock, vcr, turn, and simplecov. To run on tests on a local copy of this repository, navigate to the root directory and enter `rspec` on the command line. 
 
-*Test Coverage: I've created some model specs. Next I would create specs to check the Http responses and some feature specs. Simple cov produces a code coverage report that can be found in `coverage` folder in the root directory. Open `room/coverage/index.html` for test coverage percentages. 
+* Test Coverage: I've created some model specs. Next I would create specs to check the Http responses and some feature specs. Simple cov produces a code coverage report that can be found in `coverage` folder in the root directory. Open `room/coverage/index.html` for test coverage percentages. 
 
 * Deployment: The application is currently deployed on Heroku: http://polar-basin-4663.herokuapp.com/
+
+* Set-up: To create a new contest, contact the API administrator for a unique api-key. This is the only required parameter for initializing a new tournament. I've treated the API key as non-sensative data. If it were identified as a security concern, I would put it in a `.yml` file, hide it from GitHub in the `.gitignore` file, and reference it through the configs. I'd use Heroku's config variables to include it in production.
 
 ##Issues to resolve:
 
@@ -34,7 +36,7 @@ It is a strong params issue, but my efforts today failed to come up with a solut
 
 In my application, I have a set-up methods in the `Round` model using HTTParty to do this post request. I think it is close.
 
-###Most of the structure of the app, API call methods, views, and rountes are in place. Unfortunately, these two issues kept me from creating a fully working version of this application. 
+###Most of the structure of the app, API call methods, views, and routes are in place. Unfortunately, these two issues kept me from creating a fully working version of this application. 
 
 ##Next steps and additional features:
 1. After resolving the issues above, I'd include better handling of errors and incorporate status checks at points in the app.
