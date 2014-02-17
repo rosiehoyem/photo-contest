@@ -7,8 +7,6 @@ class ContestsController < ApplicationController
     @contests = Contest.all
   end
 
-  # GET /contests/1
-  # GET /contests/1.json
   def show
   end
 
@@ -17,12 +15,6 @@ class ContestsController < ApplicationController
     @contest = Contest.new
   end
 
-  # GET /contests/1/edit
-  def edit
-  end
-
-  # POST /contests
-  # POST /contests.json
   def create
     @contest = Contest.new(contest_params)
 
@@ -55,29 +47,6 @@ class ContestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /contests/1
-  # PATCH/PUT /contests/1.json
-  def update
-    respond_to do |format|
-      if @contest.update(contest_params)
-        format.html { redirect_to @contest, notice: 'Contest was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @contest.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /contests/1
-  # DELETE /contests/1.json
-  def destroy
-    @contest.destroy
-    respond_to do |format|
-      format.html { redirect_to contests_url }
-      format.json { head :no_content }
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -30,12 +30,26 @@
                   <td><%= image_tag image[1].url, width: "350" %></td>
                 </tr>
                 <tr>
-                  <td><%= button_to wins_contest_round_images_path(round_id: @round.id, id: image[0].id, loser_id: image[1].id), remote: true, class: "btn btn-primary" do %>
-                      <strong>Image B Wins!</strong>
-                    <% end %></td>
-                  <td><%= button_to wins_contest_round_images_path(round_id: @round.id, id: image[0].id, loser_id: image[1].id), remote: true, class: "btn btn-primary" do %>
-                      <strong>Image A Wins!</strong>
-                    <% end %></td>
+                  <td>
+                    <div class="text-center">
+                    <%= form_tag(wins_contest_round_images_path(round_id: @round.id, contest_id: @contest.id, id: image[0].id ), method: "post") do %>
+                      <%= check_box_tag(image[0].in_competition) %>
+                      <%= label_tag(:in_competition, "Image A Wins!") %>
+                      <%= hidden_field_tag(:loser_id, image[1].id) %>
+                    <p><%= submit_tag "Submit Winner", class: "btn btn-primary" %></p>
+                    <%end%>
+                  </div>
+                  </td>
+                  <td>
+                    <%= form_tag(wins_contest_round_images_path(round_id: @round.id, contest_id: @contest.id, id: image[0].id ), method: "post") do %>
+                        <%= check_box_tag(image[1].in_competition) %>
+                        <%= label_tag(image[1].in_competition, "Image B Wins!") %>
+                      <%= submit_tag "Submit Winner", class: "btn btn-primary" %>
+                    <%end%>
+                  </td>
+                </tr>
+                <tr>
+                  
                 </tr>
               </div>
             <% else %>

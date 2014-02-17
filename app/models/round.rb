@@ -22,7 +22,7 @@ class Round < ActiveRecord::Base
   def prepare_round_data
     @data=[]
     self.winner_collection.each do |winner_id|
-      @data << Image.where(image.flickr_id = image.winner_id)
+      @data << Image.find_by(flickr_id: winner_id)
     end
   end
 
@@ -32,7 +32,7 @@ class Round < ActiveRecord::Base
  
 
   def post_round
-    HTTParty.post("http://pv.pop.umn.edu/contest/" + self.contest.api_key + "/round/" + self.number, :body =>JSON.dump(@data), :options => { headers => { 'ContentType' => 'application/json' } })
+    HTTParty.post("http://pv.pop.umn.edu/contest/" + self.contest.api_key + "/round/" + self.number, :body =>JSON.dump(@data.to_json), :options => {:headers {'Content-Type' => 'application/json', 'Accept' => 'application/json'}} )
   end
 
 end
