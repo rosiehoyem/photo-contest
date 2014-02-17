@@ -48,6 +48,9 @@ end
 # gem 'debugger', group: [:development, :test]
 
 group :test, :development do
+  gem 'webmock'
+  gem 'vcr'
+  gem 'turn'
   gem "faker"
   gem "rspec-rails"
   gem "capybara"
