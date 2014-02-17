@@ -1,7 +1,7 @@
 class Contest < ActiveRecord::Base
   has_many :rounds
   has_many :images
-  validates :api_key, presence: true
+  validates :api_key, presence: true, uniqueness: true
   include HTTParty
 
   def initialize_contest

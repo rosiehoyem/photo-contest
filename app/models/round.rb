@@ -1,6 +1,7 @@
 class Round < ActiveRecord::Base
   belongs_to :contest
   has_many :images
+  include HTTParty
 
   def round_id
     self.number
@@ -32,7 +33,7 @@ class Round < ActiveRecord::Base
  
 
   def post_round
-    HTTParty.post("http://pv.pop.umn.edu/contest/" + self.contest.api_key + "/round/" + self.number + ", :body =>JSON.dump(@data.to_json), :options => {:headers {'Content-Type' => 'application/json', 'Accept' => 'application/json'}}")
+    HTTParty.post("http://pv.pop.umn.edu/contest/" + self.contest.api_key + "/round/" + self.number + ", :body =>JSON.dump(" + @data.to_json + "), :options => {:headers {'Content-Type' => 'application/json', 'Accept' => 'application/json'}}")
   end
 
 end

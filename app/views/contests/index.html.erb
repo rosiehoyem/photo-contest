@@ -6,7 +6,7 @@
       <h3 class="panel-title">Tournament #<%= i %>: <%= link_to contest.name.gsub(".", " "), contest_path(contest) %></h3>
     </div>
     <div class="panel-body">
-      <p>Status: Current on round <%= contest.active_round %></p>
+      <p>Status: Currently on round <%= contest.active_round %></p>
       <%= link_to contest_path(contest), class: "btn btn-primary" do %>
       <strong>Continue the Tournament!</strong>
       <% end %>

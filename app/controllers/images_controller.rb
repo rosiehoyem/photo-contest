@@ -15,7 +15,7 @@ class ImagesController < ApplicationController
     @loser.in_competition = false
     respond_to do |format|
       if @image.update(image_params)
-        flash[:notice] = "Thanks for stopping by!"     
+        flash[:notice] = "Your photo winner was successfully saved."     
         format.html { redirect_to winner_contest_round_images(round_id: @round.id) } 
         format.js
         format.json { render action: 'image#winner', status: :created, location: winner_contest_round_images(round_id: @round.id) }

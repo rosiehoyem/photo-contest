@@ -6,7 +6,7 @@ describe Contest do
 
 	  it "is invalid without an api key" do
 			contest = FactoryGirl.build(:contest, api_key: nil)
-			expect(contest).to have(1).errors_on(:api_key)
+			expect(contest).to have(2).errors_on(:api_key)
 		end
  
     it "includes httparty methods" do
