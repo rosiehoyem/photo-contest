@@ -32,11 +32,11 @@ param not found: image`
 It is a strong params issue, but my efforts today failed to come up with a solution. I think it must have to do with how I've nested my models. If I had more time, I'd dig deeper there. 
 
 2. I also ran into some issues setting up the payload for submitting the `post` round request. I tried using both the Net::HTTP ruby library and HTTParty. Following [this example](http://stackoverflow.com/questions/3586616/help-me-with-posting-with-nethttp), I was getting this error: 
-"NoMethodError: undefined method `bytesize' for #<Array:0x007f97e58f1a18>"
+`NoMethodError: undefined method 'bytesize' for #<Array:0x007f97e58f1a18>`
 
 In my application, I have a set-up methods in the `Round` model using HTTParty to do this post request. I think it is close.
 
-###Most of the structure of the app, API call methods, views, and routes are in place. Unfortunately, these two issues kept me from creating a fully working version of this application. 
+Most of the structure of the app, API call methods, views, and routes are in place. Unfortunately, these two issues kept me from creating a fully working version of this application. 
 
 ##Next steps and additional features:
 1. After resolving the issues above, I'd include better handling of errors and incorporate status checks at points in the app.
