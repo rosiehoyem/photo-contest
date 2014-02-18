@@ -5,6 +5,7 @@
         <h1 id="tables"><%=@contest.name.gsub(".", " ") %>'s Photo Tournament</h1>
           <h2>Round <%= @round.number %></h2>
       </div>
+      <%= form_tag winners_contest_round_images_path(round_id: @round.id, contest_id: @contest.id), method: :put do %>
       <div class="table-responsive">
         <% i = 1 %>
         <% @pairs.each do |image| %>
@@ -31,29 +32,27 @@
                 <div class="image-contest">
                   <tr>
                     <td>
-                      <%= form_tag(wins_contest_round_images_path(round_id: @round.id, contest_id: @contest.id, id: image[0].id ), method: "post") do %>
-                        <%= check_box_tag(image[0].in_competition) %>
-                        <%= label_tag(:in_competition, "Check Here If Image A Wins!") %>
-                        <%= hidden_field_tag(:loser_id, image[1].id) %>
-                      <p><%= submit_tag "Submit Winner", class: "btn btn-primary" %></p>
-                      <%end%>
+                      <%= check_box_tag "image_ids[]", image[0].id %>
+                      <%= label_tag(:in_competition, "Check Here If Image A Wins!") %>
+                      <%= hidden_field_tag(:loser_id, image[1].id) %>
                     </td>
                     <td>
-                      <%= form_tag(wins_contest_round_images_path(round_id: @round.id, contest_id: @contest.id, id: image[1].id ), method: "post") do %>
-                          <%= check_box_tag(image[1].in_competition) %>
-                          <%= label_tag(:in_competition, "Check Here If Image B Wins!") %>
-                          <%= hidden_field_tag(:loser_id, image[0].id) %>
-                        <p><%= submit_tag "Submit Winner", class: "btn btn-primary" %></p>
-                      <%end%>
+                      <%= check_box_tag "image_ids[]", image[1].id %>
+                      <%= label_tag(:in_competition, "Check Here If Image B Wins!") %>
+                      <%= hidden_field_tag(:loser_id, image[0].id) %>
                     </td>
                   </tr>
                 </div>
-                <tr>
-                </tr>
               </div>
             <% else %>
               <%= render "images/wins" %>
             <%end%>
+              <tr>
+                <td>
+                  <%= submit_tag "Submit Winners to Round" @round.number %>
+                </td>
+              </tr>
+                <% end %>
             </table>
           </div>
         <% end %>

@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20140216172454) do
     t.integer  "round_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "in_competition", default: true
+    t.boolean  "in_competition"
   end
 
   add_index "images", ["contest_id"], name: "index_images_on_contest_id", using: :btree

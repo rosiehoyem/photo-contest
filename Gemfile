@@ -27,8 +27,8 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'httparty'
-gem 'multipart-post'
+gem "rest-client", "~> 1.6.7"
+gem "faraday", "~> 0.9.0"
 
 group :production do
   gem 'rails_12factor', '0.0.2'

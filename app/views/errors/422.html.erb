@@ -1,0 +1,6 @@
+<h1>422 - Unacceptable</h1>
+<% if @exception %>
+  <p><%= @exception.message %></p>
+<% else %>
+  <p>Sorry, that action is not allowed.</p>
+<% end %>

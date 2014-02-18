@@ -8,14 +8,20 @@ PhotoContest::Application.routes.draw do
     resources :rounds, :images do
       resource :images do
         collection do
-          post 'wins'
-          get 'winner'
+          put 'winners'
+          get 'contest_winner'
         end
       end 
     end
   end
 
   root 'contests#index'
+
+  %w( 404 422 500 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

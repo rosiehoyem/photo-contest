@@ -21,7 +21,9 @@ class ContestsController < ApplicationController
     respond_to do |format|
       if @contest.save
         @contest.initialize_contest
-        if @contest.save_project_details(@contest.status)
+        if @status =!
+        @contest.save_project_details(@contest.status)
+        if @contest.name
           @round = @contest.rounds.create(number: 1, image_collection: [])
           @contest.active_round = @round.number
           if @contest.save
