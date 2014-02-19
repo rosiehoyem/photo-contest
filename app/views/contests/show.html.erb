@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= if @contest.name %>
   <h1>Tournament Owner: </strong><%= @contest.name.gsub(".", " ") %></h2>
     <h2>Active round: <%= @contest.active_round %></h2>
   <%=link_to contest_round_path(contest_id: @contest.id, id: @contest.active_round), class: "btn btn-primary" do %><strong>Vote on this round!</strong>
@@ -23,7 +22,5 @@
       <%end%>
       </div>
     </div>
-  <% else %>
-    <%= raise 
 
 <%= link_to 'Back', contests_path %>
