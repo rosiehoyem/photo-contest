@@ -29,7 +29,6 @@
                   <td><%= image_tag image[0].url, width: "350" %></td>
                   <td><%= image_tag image[1].url, width: "350" %></td>
                 </tr>
-                <div class="image-contest">
                   <tr>
                     <td>
                       <%= check_box_tag "image_ids[]", image[0].id %>
@@ -42,17 +41,17 @@
 
                     </td>
                   </tr>
+                  <tr>
+                    <td>
+                      <%= submit_tag "Submit Winners to Round" %>
+                    </td>
+                  </tr>
+                <% end %>
                 </div>
               </div>
             <% else %>
               <%= render "images/wins" %>
             <%end%>
-              <tr>
-                <td>
-                  <% end %>
-                  <%= submit_tag "Submit Winners to Round", class: "btn btn-primary" %>
-                </td>
-              </tr>
             </table>
           </div>
         <% end %>
