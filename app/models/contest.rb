@@ -5,7 +5,7 @@ class Contest < ActiveRecord::Base
   require 'rest_client'
 
   def initialize_contest
-    RestClient.post("http://pv.pop.umn.edu/contest/" + self.api_key + "/reset")
+    RestClient.post("http://pv.pop.umn.edu/contest/" + self.api_key + "/reset, body: null")
   end
 
   def status
