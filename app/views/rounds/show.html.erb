@@ -19,7 +19,6 @@
                 <th><h2>Image B</h2></th>
               </tr>
             </thead>
-            <% if image[0].in_competition == true && image[1].in_competition == true %>
               <div class="image_contest">
                 <tr>
                   <td><strong><%= image[0].title %></strong></td>
@@ -49,9 +48,6 @@
                 <% end %>
                 </div>
               </div>
-            <% else %>
-              <%= render "images/wins" %>
-            <%end%>
             </table>
           </div>
         <% end %>
