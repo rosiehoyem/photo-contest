@@ -11,7 +11,7 @@ PhotoContest::Application.configure do
 
   # Show full error reports and disable caching.
   #Set this to false to see error pages in development
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.

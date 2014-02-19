@@ -2,14 +2,14 @@ class Contest < ActiveRecord::Base
   has_many :rounds
   has_many :images
   validates :api_key, presence: true, uniqueness: true
-  include HTTParty
+  require 'rest_client'
 
   def initialize_contest
-    HTTParty.post("http://pv.pop.umn.edu/contest/" + self.api_key + "/reset")
+    RestClient.post("http://pv.pop.umn.edu/contest/" + self.api_key + "/reset")
   end
 
   def status
-    HTTParty.get("http://pv.pop.umn.edu/contest/" + self.api_key)
+    RestClient.get("http://pv.pop.umn.edu/contest/" + self.api_key)
   end
 
   def save_project_details(status)
@@ -19,7 +19,7 @@ class Contest < ActiveRecord::Base
   end
 
   def get_images
-    HTTParty.get("http://pv.pop.umn.edu/contest/" + self.api_key + "/images")
+    RestClient.get("http://pv.pop.umn.edu/contest/" + self.api_key + "/images")
   end
 
   def images_from_hash(get_images)
@@ -52,7 +52,7 @@ class Contest < ActiveRecord::Base
   end
 
   def finalize_contest
-    HTTParty.post("http://pv.pop.umn.edu/contest/" + self.api_key + "/done")
+    RestClient.post("http://pv.pop.umn.edu/contest/" + self.api_key + "/done")
   end
 
   def contest_id

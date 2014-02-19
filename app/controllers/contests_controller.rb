@@ -1,8 +1,6 @@
 class ContestsController < ApplicationController
-  before_action :set_contest, only: [:show, :final, :finalize]
+  before_action :set_contest, only: [:show, :destroy, :final, :finalize]
 
-  # GET /contests
-  # GET /contests.json
   def index
     @contests = Contest.all
   end
@@ -17,35 +15,40 @@ class ContestsController < ApplicationController
 
   def create
     @contest = Contest.new(contest_params)
-
     respond_to do |format|
       if @contest.save
         @contest.initialize_contest
-        if @status =!
         @contest.save_project_details(@contest.status)
-        if @contest.name
+        if @contest.name != nil
           @round = @contest.rounds.create(number: 1, image_collection: [])
           @contest.active_round = @round.number
-          if @contest.save
-            if @contest.images_from_hash(@contest.get_images)        
-              format.html { redirect_to contest_round_path(contest_id: @contest.id, id: @round.number), notice: 'Contest was successfully created.' }
-              format.json { render action: 'show', status: :created, location: @contest }
-            else
-              format.html { render action: 'new', notice: "Sorry, we could not retrieve your images."}
-              format.json { render action: 'show', status: :created, location: @contest } 
-            end
-          else
-            format.html { render action: 'new', notice: 'Sorry, your new contest was not saved.'}
+          @contest.save
+          if @contest.active_round = 1
+            @contest.images_from_hash(@contest.get_images)        
+            format.html { redirect_to contest_round_path(contest_id: @contest.id, id: @round.number), notice: 'Contest was successfully created.' }
             format.json { render action: 'show', status: :created, location: @contest }
+          else
+            @contest.destroy
+            format.html { render action: 'new', notice: "Sorry, we could not set-up the first round of your tournament."}
+            format.json { render json: @contest.errors, status: :unprocessable_entity } 
           end
         else
-          format.html { render action: 'new', notice: 'Your contest was not initiated successfully'}
-          format.json { render action: 'show', status: :created, location: @contest }
+          @contest.destroy
+          format.html { render action: 'new', notice: 'Your contest was not initiated successfully.'}
+          format.json { render json: @contest.errors, status: :unprocessable_entity }
         end  
       else
         format.html { render action: 'new' }
         format.json { render json: @contest.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @contest.destroy
+    respond_to do |format|
+      format.html { redirect_to new_contest_url }
+      format.json { head :no_content }
     end
   end
 

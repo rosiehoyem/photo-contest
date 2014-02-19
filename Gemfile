@@ -28,7 +28,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem "rest-client", "~> 1.6.7"
-gem "faraday", "~> 0.9.0"
 
 group :production do
   gem 'rails_12factor', '0.0.2'
@@ -52,9 +51,6 @@ end
 # gem 'debugger', group: [:development, :test]
 
 group :test, :development do
-  gem 'webmock'
-  gem 'vcr'
-  gem 'turn'
   gem "faker"
   gem "rspec-rails"
   gem "capybara"

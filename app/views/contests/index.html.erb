@@ -1,21 +1,26 @@
 <h1>Photo Tournament!</h1>
-
 <% if Contest.first %>
   <% i = 1%>
-  <% @contests.each do |contest| %>
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Tournament #<%= i %>: <%= link_to contest.name.gsub(".", " "), contest_path(contest) %></h3>
+    <% @contests.each do |contest| %>
+      <% if contest.name %>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Tournament #<%= i %>: <%= link_to contest.name.gsub(".", " "), contest_path(contest) %></h3>
+        </div>
+        <div class="panel-body">
+          <p>Status: Currently on round <%= contest.active_round %></p>
+          <%= link_to contest_path(contest), class: "btn btn-primary" do %>
+          <strong>Continue the Tournament!</strong>
+          <% end %>
+        </div>
       </div>
-      <div class="panel-body">
-        <p>Status: Currently on round <%= contest.active_round %></p>
-        <%= link_to contest_path(contest), class: "btn btn-primary" do %>
-        <strong>Continue the Tournament!</strong>
-        <% end %>
-      </div>
-    </div>
-    <% i = i + 1 %>
-  <% end %>
+      <% i = i + 1 %>
+      <% else %>
+        <p>Tournament (ID: <%= contest.id %>) was saved, but it was not initiated correctly.</p>
+        <p><%= link_to 'Delete it and try again.', contest, method: :destroy %></p>
+        <p>If this fails, contact Rosie.</p>
+      <% end %>
+    <% end %>
 <% else %>
   <h3>Be the first to start a Photo Tournament!</h3>
 <% end %>
