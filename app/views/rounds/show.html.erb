@@ -34,12 +34,12 @@
                     <td>
                       <%= check_box_tag "image_ids[]", image[0].id %>
                       <%= label_tag(:in_competition, "Check Here If Image A Wins!") %>
-                      <%= hidden_field_tag(:loser_id, image[1].id) %>
+
                     </td>
                     <td>
                       <%= check_box_tag "image_ids[]", image[1].id %>
                       <%= label_tag(:in_competition, "Check Here If Image B Wins!") %>
-                      <%= hidden_field_tag(:loser_id, image[0].id) %>
+
                     </td>
                   </tr>
                 </div>
@@ -49,7 +49,7 @@
             <%end%>
               <tr>
                 <td>
-                  <%= submit_tag "Submit Winners to Round" @round.number %>
+                  <%= submit_tag "Submit Winners to Round" %>
                 </td>
               </tr>
                 <% end %>

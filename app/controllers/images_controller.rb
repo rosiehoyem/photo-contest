@@ -8,19 +8,18 @@ class ImagesController < ApplicationController
   def show
   end
 
-  def wins
+  def winners
     @round = Round.find(params[:round_id])
-    @winner = Image.find(params[:id])
-    @loser = Image.find(params[:loser_id])
-    @loser.in_competition = false
+    @contest = Contest.find(params[:contest_id])
+    Image.update_all({in_competition: true}, {id: params[:image_ids]})
+    redirect_to contest_url(@contest)
     respond_to do |format|
       if @image.update(image_params)
-        flash[:notice] = "Your photo winner was successfully saved."     
+        flash[:notice] = "Your photo winners were successfully saved."     
         format.html { redirect_to winner_contest_round_images(round_id: @round.id) } 
-        format.js
         format.json { render action: 'image#winner', status: :created, location: winner_contest_round_images(round_id: @round.id) }
       else
-        flash[:notice] = "I'm sorry. We couldn't save your photo winner."
+        flash[:notice] = "I'm sorry. We couldn't save your photo winners."
         format.html { render action: 'round#show' }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
